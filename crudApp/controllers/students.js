@@ -41,7 +41,7 @@ exports.findAll = async (req, res) => {
 // User with given id
 exports.findOne = async (req, res) => {
     try {
-        const user = await student.findById(req.params.id);
+        const user = await student.findById(req.body._id);
         res.status(200).json(user);
     } catch(error) {
         res.status(404).json({ message: error.message});
@@ -55,7 +55,7 @@ exports.update = async (req, res) => {
             message: "Data to update can not be empty!"
         });
     }
-const id = req.params.id;
+const id = req.body._id;
     
 await student.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(data => {
     if (!data) {
@@ -74,7 +74,7 @@ await student.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(
 
 // Delete a user with the specified id in the request
 exports.destroy = async (req, res) => {
-    await student.findByIdAndRemove(req.params.id).then(data => {
+    await student.findByIdAndRemove(req.body._id).then(data => {
         if (!data) {
           res.status(404).send({
             message: `Student not found.`

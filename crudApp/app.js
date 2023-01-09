@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const Student=require("./models/student");
 const dbConfig=require('./config/db.config');
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 app.use(bodyParser.json())
 
 const UserRoute = require('./routes/students')
