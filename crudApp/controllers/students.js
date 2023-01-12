@@ -7,7 +7,7 @@ exports.create = async (req, res) => {
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
         lastName: req.body.lastName,
-        Age: req.body.Age,
+        age: req.body.Age,
         highestQualification: req.body.highestQualification,
         isStudent: req.body.isStudent,
         interest: req.body.interest,
@@ -41,7 +41,7 @@ exports.findAll = async (req, res) => {
 // User with given id
 exports.findOne = async (req, res) => {
     try {
-        const user = await student.findById(req.body._id);
+        const user = await student.findById(req.params.id);
         res.status(200).json(user);
     } catch(error) {
         res.status(404).json({ message: error.message});
